@@ -1,0 +1,11 @@
+auto-save-list/
+backups/
+elpa/
+semanticdb/
+.recentf*
+abbrev_defs
+.smex-items
+%backup%*
+*.eld
+cider-history
+ido.last
