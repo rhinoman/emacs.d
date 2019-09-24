@@ -9,3 +9,6 @@ abbrev_defs
 *.eld
 cider-history
 ido.last
+.lsp-session*
+eclipse.jdt.ls/
+workspace/
