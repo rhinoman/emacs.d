@@ -9,6 +9,11 @@
      (tagedit-add-paredit-like-keybindings)
      (add-hook 'html-mode-hook (lambda () (tagedit-mode 1)))))
 
+(add-hook 'js-mode-hook 
+          (lambda ()
+            (flymake-eslint-enable)))
+
+(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
 
 ;; coffeescript
 (add-to-list 'auto-mode-alist '("\\.coffee.erb$" . coffee-mode))

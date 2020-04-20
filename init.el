@@ -5,14 +5,16 @@
 ;; Define package repositories
 (require 'package)
 
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 (setq package-check-signature nil)
 
 (add-to-list 'package-archives
-             '("tromey" . "http://tromey.com/elpa/") t)
+             '("tromey" . "https://tromey.com/elpa/") t)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "https://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
              '("melpa-ext" . "https://melpa.org/packages/") t)
 
@@ -148,7 +150,7 @@
  '(coffee-tab-width 2)
  '(package-selected-packages
    (quote
-    (treemacs cider-hydra cider-decompile js2-mode racket-mode actionscript-mode company-lsp lsp-java markdown-mode yaml-mode company tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell))))
+    (javascript eslint-fix flymake-eslint treemacs cider-hydra cider-decompile js2-mode racket-mode actionscript-mode company-lsp lsp-ui flycheck yasnippet lsp-java dap-mode dap-java markdown-mode yaml-mode company tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
