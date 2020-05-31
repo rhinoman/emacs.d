@@ -150,7 +150,11 @@
  '(coffee-tab-width 2)
  '(package-selected-packages
    (quote
-    (dockerfile-mode javascript eslint-fix flymake-eslint treemacs cider-hydra cider-decompile js2-mode racket-mode actionscript-mode company-lsp lsp-ui flycheck yasnippet lsp-java dap-mode dap-java markdown-mode yaml-mode company tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell))))
+    (html5-schema dockerfile-mode javascript eslint-fix flymake-eslint treemacs cider-hydra cider-decompile js2-mode racket-mode actionscript-mode company-lsp lsp-ui flycheck yasnippet lsp-java dap-mode dap-java markdown-mode yaml-mode company tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell)))
+ '(safe-local-variable-values
+   (quote
+    ((cider-shadow-cljs-default-options . "app")
+     (cider-default-cljs-repl . shadow)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
