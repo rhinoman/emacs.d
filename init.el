@@ -48,6 +48,12 @@
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
     paredit
 
+    company
+    
+    company-lsp
+
+    treemacs
+    
     ;; key bindings and code colorization for Clojure
     ;; https://github.com/clojure-emacs/clojure-mode
     clojure-mode
@@ -76,7 +82,18 @@
     rainbow-delimiters
 
     ;; edit html tags like sexps
-    tagedit))
+    tagedit
+
+    dap-mode
+
+    lsp-mode
+
+    lsp-java
+
+    lsp-ui
+
+    yasnippet
+    ))
 
 ;; On OS X, an Emacs instance started from the graphical user
 ;; interface will have a different environment than a shell in a
@@ -150,14 +167,17 @@
  '(coffee-tab-width 2)
  '(package-selected-packages
    (quote
-    (html5-schema dockerfile-mode javascript eslint-fix flymake-eslint treemacs cider-hydra cider-decompile js2-mode racket-mode actionscript-mode company-lsp lsp-ui flycheck yasnippet lsp-java dap-mode dap-java markdown-mode yaml-mode company tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell)))
+    (lsp-mode html5-schema dockerfile-mode javascript eslint-fix flymake-eslint treemacs cider-hydra cider-decompile js2-mode racket-mode actionscript-mode company-lsp lsp-ui flycheck yasnippet lsp-java dap-mode dap-java markdown-mode yaml-mode company tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell)))
  '(safe-local-variable-values
    (quote
     ((cider-shadow-cljs-default-options . "app")
      (cider-default-cljs-repl . shadow)))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;; increase font size for better readability
+(set-face-attribute 'default nil :height 80)
