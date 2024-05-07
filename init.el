@@ -28,16 +28,20 @@
  ;; If there is more than one, they won't work right.
  )
 
+(use-package company
+  :ensure t)
+(use-package speedbar
+  :ensure t)
 (use-package rust-mode
-	     :ensure t)
+  :ensure t)
 (use-package rustic
-	     :ensure t)
+  :ensure t)
 (use-package evil
-	     :ensure t)
+  :ensure t)
 (use-package python
-	     :ensure t)
+  :ensure t)
 (use-package typescript-mode
-	     :ensure t)
+  :ensure t)
 (evil-mode 1)
 (use-package lsp-mode
   :ensure t	     
