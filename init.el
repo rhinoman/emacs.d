@@ -20,15 +20,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(typescript poetry general evil-visual-mark-mode lsp-treemacs company rustic typescript-mode lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
+   '(company-capf company-anaconda typescript poetry general evil-visual-mark-mode lsp-treemacs company rustic typescript-mode lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
+(use-package treemacs
+  :ensure t)
 (use-package company
+  :ensure t)
+(use-package company-anaconda
   :ensure t)
 (use-package speedbar
   :ensure t)
@@ -40,6 +43,8 @@
   :ensure t)
 (use-package python
   :ensure t)
+(use-package poetry
+  :ensure t)
 (use-package typescript-mode
   :ensure t)
 (evil-mode 1)
@@ -47,10 +52,17 @@
   :ensure t	     
   :config
   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
+
+(eval-after-load "company"
+ '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
 ;; Set LSP mode
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
 
 (add-hook 'rust-mode-hook #'lsp)
-(add-hook 'python-mode-hook #'lsp)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (setq python-shell-interpreter "ipython")
 (setq python-shell-completion-native-disabled-interpreters '("ipython"))
