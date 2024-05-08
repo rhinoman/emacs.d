@@ -20,7 +20,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(company-capf company-anaconda typescript poetry general evil-visual-mark-mode lsp-treemacs company rustic typescript-mode lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
+   '(ttl-mode python-ts poetry-mode python-ts-mode poetry-ts-mode treesit-auto company-capf company-anaconda poetry general evil-visual-mark-mode lsp-treemacs company rustic lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,7 +28,14 @@
  ;; If there is more than one, they won't work right.
  )
 (use-package treemacs
-  :ensure t)
+   :ensure t)
+(use-package treesit-auto
+  :ensure t
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 (use-package company
   :ensure t)
 (use-package company-anaconda
@@ -41,29 +48,56 @@
   :ensure t)
 (use-package evil
   :ensure t)
-(use-package python
-  :ensure t)
 (use-package poetry
   :ensure t)
-(use-package typescript-mode
+(use-package flycheck
   :ensure t)
+(use-package lsp-treemacs
+  :ensure t
+  :commands lsp-treemacs-errors-list)
+(use-package ttl-mode
+  :mode (("\\.ttl\\'" . ttl-mode))
+  :ensure t)
+
+(use-package typescript-ts
+  :mode (("\\.ts\\'" . typescript-ts-mode)
+         ("\\.tsx\\'" . tsx-ts-mode))
+  :after lsp)
 (evil-mode 1)
 (use-package lsp-mode
   :ensure t	     
   :config
-  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+  :hook ((rust-mode
+	  rust-ts-mode
+	  typescript-mode
+	  typescript-ts-mode
+	  tsx-mode
+	  tsx-ts-mode) . lsp)
+  :commands lsp)	
 
 (eval-after-load "company"
  '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
 ;; Set LSP mode
 (use-package lsp-pyright
   :ensure t
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+  :hook (python-ts-mode . (lambda ()
+                            (require 'lsp-pyright)
+                            (lsp))))  ; or lsp-deferred
 
 (add-hook 'rust-mode-hook #'lsp)
+(add-hook 'typescript-mode #'lsp)
+(add-hook 'typescript-ts-mode #'lsp)
+(add-hook 'tsx-ts-mode #'lsp)
+(add-hook 'tsx-mode #'lsp)
+(setq lsp-auto-guess-root t)
+(setq lsp-diagnostic-package :none)
+(setq lsp-prefer-capf t)
+(add-to-list 'lsp-language-id-configuration '(js-jsx-mode . "javascriptreact"))
+
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
 (setq python-shell-interpreter "ipython")
 (setq python-shell-completion-native-disabled-interpreters '("ipython"))
 
+(provide 'init)

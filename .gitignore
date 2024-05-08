@@ -3,3 +3,4 @@
 .lsp-session-*
 elpa/
 transient/
+tree-sitter/
