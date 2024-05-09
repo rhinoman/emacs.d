@@ -3,7 +3,7 @@
 	     '("MELPA" .
 	       "http://melpa.org/packages/"))
 (package-initialize)
-
+(xterm-mouse-mode 1)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 (dolist (package '(use-package))
@@ -20,7 +20,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ttl-mode python-ts poetry-mode python-ts-mode poetry-ts-mode treesit-auto company-capf company-anaconda poetry general evil-visual-mark-mode lsp-treemacs company rustic lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
+   '(flycheck evil ttl-mode python-ts poetry-mode python-ts-mode poetry-ts-mode treesit-auto company-capf company-anaconda poetry general evil-visual-mark-mode lsp-treemacs company rustic lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
