@@ -27,7 +27,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(use-package treemacs
+(use-package treemacs-evil
    :ensure t)
 (use-package treesit-auto
   :ensure t
@@ -72,28 +72,18 @@
 	  rust-ts-mode
 	  typescript-mode
 	  typescript-ts-mode
+	  javascript-ts-mode
+	  python-ts-mode
 	  tsx-mode
 	  tsx-ts-mode) . lsp)
   :commands lsp)	
 
 (eval-after-load "company"
  '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
-;; Set LSP mode
-(use-package lsp-pyright
-  :ensure t
-  :hook (python-ts-mode . (lambda ()
-                            (require 'lsp-pyright)
-                            (lsp))))  ; or lsp-deferred
-
-(add-hook 'rust-mode-hook #'lsp)
-(add-hook 'typescript-mode #'lsp)
-(add-hook 'typescript-ts-mode #'lsp)
-(add-hook 'tsx-ts-mode #'lsp)
-(add-hook 'tsx-mode #'lsp)
 (setq lsp-auto-guess-root t)
 (setq lsp-diagnostic-package :none)
 (setq lsp-prefer-capf t)
-(add-to-list 'lsp-language-id-configuration '(js-jsx-mode . "javascriptreact"))
+;(add-to-list 'lsp-language-id-configuration '(js-jsx-mode . "javascriptreact"))
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
