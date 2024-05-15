@@ -10,6 +10,10 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+
+(use-package no-littering
+  :ensure t)
+
 (use-package dracula-theme
 	     :ensure t)
 
@@ -20,7 +24,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(flycheck evil ttl-mode python-ts poetry-mode python-ts-mode poetry-ts-mode treesit-auto company-capf company-anaconda poetry general evil-visual-mark-mode lsp-treemacs company rustic lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
+   '(flycheck-rust flycheck evil ttl-mode python-ts poetry-mode python-ts-mode poetry-ts-mode treesit-auto company-capf company-anaconda poetry general evil-visual-mark-mode lsp-treemacs company rustic lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -52,6 +56,8 @@
   :ensure t)
 (use-package flycheck
   :ensure t)
+(use-package flycheck-rust
+  :ensure t)
 (use-package lsp-treemacs
   :ensure t
   :commands lsp-treemacs-errors-list)
@@ -81,12 +87,15 @@
 (eval-after-load "company"
  '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
 (setq lsp-auto-guess-root t)
-(setq lsp-diagnostic-package :none)
 (setq lsp-prefer-capf t)
+(setq lsp-diagnostics-provider :flycheck)
+(setq lsp-ui-sideline-enable t)
 ;(add-to-list 'lsp-language-id-configuration '(js-jsx-mode . "javascriptreact"))
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
-
+(with-eval-after-load 'rust-ts-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(add-hook 'rust-ts-mode-hook #'rustic-mode)
 (setq python-shell-interpreter "ipython")
 (setq python-shell-completion-native-disabled-interpreters '("ipython"))
 
