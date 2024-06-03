@@ -24,7 +24,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(flycheck-rust flycheck evil ttl-mode python-ts poetry-mode python-ts-mode poetry-ts-mode treesit-auto company-capf company-anaconda poetry general evil-visual-mark-mode lsp-treemacs company rustic lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
+   '(groovy-mode flycheck-rust flycheck evil ttl-mode python-ts poetry-mode python-ts-mode poetry-ts-mode treesit-auto company-capf company-anaconda poetry general evil-visual-mark-mode lsp-treemacs company rustic lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -49,6 +49,8 @@
 (use-package rust-mode
   :ensure t)
 (use-package rustic
+  :ensure t)
+(use-package groovy-mode
   :ensure t)
 (use-package evil
   :ensure t)
@@ -79,10 +81,17 @@
 	  typescript-mode
 	  typescript-ts-mode
 	  javascript-ts-mode
-	  python-ts-mode
 	  tsx-mode
 	  tsx-ts-mode) . lsp)
-  :commands lsp)	
+  :commands lsp)
+
+(setq lsp-pyright-use-library-code-for-types nil)
+(setq python.analysis.typeCheckingMode "basic")
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-ts-mode . (lambda ()
+			    (require 'lsp-pyright)
+			    (lsp))))
 
 (eval-after-load "company"
  '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
