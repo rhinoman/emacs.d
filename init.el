@@ -2,6 +2,8 @@
 (add-to-list 'package-archives
 	     '("MELPA" .
 	       "http://melpa.org/packages/"))
+(add-to-list 'load-path "~/.emacs.d/copilot.el")
+(require 'copilot)	     
 (package-initialize)
 (xterm-mouse-mode 1)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
@@ -24,7 +26,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(groovy-mode flycheck-rust flycheck evil ttl-mode python-ts poetry-mode python-ts-mode poetry-ts-mode treesit-auto company-capf company-anaconda poetry general evil-visual-mark-mode lsp-treemacs company rustic lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
+   '(json-rpc editorconfig treemacs-evil groovy-mode flycheck-rust flycheck evil ttl-mode python-ts poetry-mode python-ts-mode poetry-ts-mode treesit-auto company-capf company-anaconda poetry general evil-visual-mark-mode lsp-treemacs company rustic lsp-pyright lsp-mode rust-mode dracula-theme speedbar-git-respect treemacs treeview)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -102,6 +104,9 @@
 ;(add-to-list 'lsp-language-id-configuration '(js-jsx-mode . "javascriptreact"))
 
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook 'copilot-mode)
+(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
 (with-eval-after-load 'rust-ts-mode
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 (add-hook 'rust-ts-mode-hook #'rustic-mode)
